@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="07ab655f-54a1-4351-8f19-315b6411a665">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     chitiethd.`MaChiTietHD` AS chitiethd_MaChiTietHD,
+     chitiethd.`MaHoaDon` AS chitiethd_MaHoaDon,
+     chitiethd.`MaMon` AS chitiethd_MaMon,
+     chitiethd.`SoLuong` AS chitiethd_SoLuong,
+     chitiethd.`Gia` AS chitiethd_Gia,
+     hoadon.`MaHoaDon` AS hoadon_MaHoaDon,
+     hoadon.`MaNV` AS hoadon_MaNV,
+     hoadon.`GiamGia` AS hoadon_GiamGia,
+     hoadon.`MaBan` AS hoadon_MaBan,
+     hoadon.`GioDen` AS hoadon_GioDen,
+     hoadon.`TongTien` AS hoadon_TongTien,
+     hoadon.`TrangThai` AS hoadon_TrangThai,
+     nhanvien.`MaNV` AS nhanvien_MaNV,
+     nhanvien.`TenNV` AS nhanvien_TenNV,
+     nhanvien.`GioiTinh` AS nhanvien_GioiTinh,
+     nhanvien.`ChucVu` AS nhanvien_ChucVu,
+     nhanvien.`NgayVaoLam` AS nhanvien_NgayVaoLam,
+     nhanvien.`DiaChi` AS nhanvien_DiaChi,
+     nhanvien.`SDT` AS nhanvien_SDT,
+     nhanvien.`PhanQuyen` AS nhanvien_PhanQuyen,
+     nhanvien.`MatKhau` AS nhanvien_MatKhau,
+     thucdon.`MaMon` AS thucdon_MaMon,
+     thucdon.`TenMon` AS thucdon_TenMon,
+     thucdon.`DonGia` AS thucdon_DonGia,
+     thucdon.`DVT` AS thucdon_DVT
+FROM
+     `hoadon` hoadon INNER JOIN `chitiethd` chitiethd ON hoadon.`MaHoaDon` = chitiethd.`MaHoaDon`
+     INNER JOIN `nhanvien` nhanvien ON hoadon.`MaNV` = nhanvien.`MaNV`
+     INNER JOIN `thucdon` thucdon ON chitiethd.`MaMon` = thucdon.`MaMon`]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="136" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="134" height="83" uuid="7e995fba-2ca8-449c-8e49-59ce8aae4bf3"/>
+				<imageExpression><![CDATA["coffee.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="150" y="0" width="282" height="62" uuid="7e4f4ba8-6192-493d-9652-4dcbf9305532"/>
+				<textElement verticalAlignment="Middle">
+					<font size="36" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[The Coffee House]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="169" y="72" width="94" height="22" uuid="ffb08164-4dd0-40c2-b74d-1a6069d31d7c"/>
+				<textElement>
+					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Thống kê từ]]></text>
+			</staticText>
+			<image>
+				<reportElement x="433" y="-115" width="267" height="209" uuid="485f2ed2-bcff-4818-b030-69a1fad885fa"/>
+				<imageExpression><![CDATA["coffee_stain.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="af90ad41-81f8-4ed2-bc69-be7d45982ce9"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="15" uuid="8040cfa7-9606-4686-8b59-aa0c5c6b0412"/>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="8862e82a-c2e2-49b0-a772-61f44b6206d5"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="597" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="4e86a486-4605-4fe0-ba42-7afe73537f00"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="533" y="0" width="40" height="20" forecolor="#736343" uuid="97cadd9c-9c1f-4d1d-9a30-10c2fdf9381f"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="453" y="0" width="80" height="20" forecolor="#736343" uuid="08de341e-1c10-4c6a-a9df-00a021c2021c"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343" uuid="68bd26c7-1804-415b-8ab1-840a85980b24"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
